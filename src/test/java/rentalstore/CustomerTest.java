@@ -67,6 +67,6 @@ public class CustomerTest {
         assertEquals("Rental Record for Mark\n" +
                 "\t" + newReleaseMovie.getTitle() + "\t6.0\n" +
                 "Amount owed is 6.0\n" +
-                "You earned 2 frequent renter points", "");
+                "You earned 2 frequent renter points", statement);
     }
 }
