@@ -25,6 +25,6 @@ public class CustomerTest {
                 + regularMovie.getTitle()
                 + "\t2.0\n"
                 + "Amount owed is 2.0\n"
-                + "You earned 1 frequent renter points", "");
+                + "You earned 1 frequent renter points", statement);
     }
 }
