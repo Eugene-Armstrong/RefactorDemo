@@ -17,3 +17,10 @@
                  	Titanic	3.5
                  Amount owed is 3.5
                  You earned 1 frequent renter points"
+
+4.  given customer named Mark,having rent 1 new release movie for 1 day
+    when call Customer.statement()
+    then return "Rental Record for Mark
+                 	Titanic	3.0
+                 Amount owed is 3.0
+                 You earned 1 frequent renter points"
