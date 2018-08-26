@@ -1,5 +1,6 @@
 package rentalstore;
 
+import rentalstore.statement.HtmlStatement;
 import rentalstore.statement.Statement;
 import rentalstore.statement.TxtStatement;
 
@@ -24,12 +25,8 @@ public class Customer {
         return name;
     }
 
-    public Vector getRentals() {
-        return rentals;
-    }
-
-    public Statement getStatement() {
-        return statement;
+    public Enumeration getRentals() {
+        return rentals.elements();
     }
 
     public void setStatement(Statement statement) {
@@ -42,17 +39,8 @@ public class Customer {
     }
 
     public String htmlStatement() {
-        Enumeration rentals = this.rentals.elements();
-        String result = "<H1>Rentals for <EM>" + getName() + "</EM></H1><P>\n";
-        while (rentals.hasMoreElements()) {
-            Rental each = (Rental) rentals.nextElement();
-            result += each.getMovie().getTitle() + ": " + String.valueOf(each.getCharge()) + "<BR>\n";
-        }
-        //add footer lines
-        result += "<P>You owe<EM>" + String.valueOf(getTotalCharge()) + "</EM><P>\n";
-        result += "On this rental you earned <EM>" + String.valueOf(getTotalFrequentRenterPoints()) +
-                "</EM> frequent renter points<P>";
-        return result;
+        setStatement(new HtmlStatement());
+        return this.statement.statement(this);
     }
 
     public double getTotalCharge() {

@@ -5,27 +5,27 @@ import rentalstore.Rental;
 
 import java.util.Enumeration;
 
-public class TxtStatement extends Statement {
+public class HtmlStatement extends Statement  {
 
     protected String headerString(Customer customer) {
-        return "Rental Record for " + customer.getName() + "\n";
+        return "<H1>Rentals for <EM>" + customer.getName() + "</EM></H1><P>\n";
     }
 
     protected String bodyString(Customer customer) {
         Enumeration rentals = customer.getRentals();
         String result = "";
-        while(rentals.hasMoreElements()){
+        while (rentals.hasMoreElements()) {
             Rental each = (Rental) rentals.nextElement();
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
+            result += each.getMovie().getTitle() + ": " + String.valueOf(each.getCharge()) + "<BR>\n";
         }
         return result;
     }
 
     protected String footerString(Customer customer) {
-        return "Amount owed is "
-                + String.valueOf(customer.getTotalCharge()) + "\n"
-                + "You earned "
+        return "<P>You owe<EM>"
+                + String.valueOf(customer.getTotalCharge())
+                + "</EM><P>\n" + "On this rental you earned <EM>"
                 + String.valueOf(customer.getTotalFrequentRenterPoints())
-                + " frequent renter points";
+                + "</EM> frequent renter points<P>";
     }
 }
