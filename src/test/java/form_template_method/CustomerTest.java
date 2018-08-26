@@ -104,7 +104,6 @@ public class CustomerTest {
         customer.addRental(fourDayRental);
 
         String statement = customer.htmlStatement();
-
         System.out.println(statement);
 
         assertEquals("<H1>Rentals for <EM>Jerry</EM></H1><P>\n" +
