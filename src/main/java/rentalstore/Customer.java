@@ -1,11 +1,16 @@
 package rentalstore;
 
+import rentalstore.statement.Statement;
+import rentalstore.statement.TxtStatement;
+
 import java.util.Enumeration;
 import java.util.Vector;
 
 public class Customer {
     private String name;
     private Vector rentals = new Vector();
+
+    private Statement statement=new TxtStatement();
 
     public Customer(String name) {
         this.name = name;
@@ -19,18 +24,21 @@ public class Customer {
         return name;
     }
 
-    public String statement(){
-        Enumeration rentals = this.rentals.elements();
-        String result = "Rental Record for " + getName() + "\n";
-        while(rentals.hasMoreElements()){
-            Rental each = (Rental) rentals.nextElement();
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
-        }
+    public Vector getRentals() {
+        return rentals;
+    }
 
-        //add footer lines
-        result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
-        result += "You earned " + String.valueOf(getTotalFrequentRenterPoints()) + " frequent renter points";
-        return result;
+    public Statement getStatement() {
+        return statement;
+    }
+
+    public void setStatement(Statement statement) {
+        this.statement = statement;
+    }
+
+    public String txtStatement(){
+        setStatement(new TxtStatement());
+        return this.statement.statement(this);
     }
 
     public String htmlStatement() {
@@ -47,7 +55,7 @@ public class Customer {
         return result;
     }
 
-    private double getTotalCharge() {
+    public double getTotalCharge() {
         double result = 0;
         Enumeration rentals = this.rentals.elements();
         while (rentals.hasMoreElements()) {
@@ -57,7 +65,7 @@ public class Customer {
         return result;
     }
 
-    private int getTotalFrequentRenterPoints() {
+    public int getTotalFrequentRenterPoints() {
         int result = 0;
         Enumeration rentals = this.rentals.elements();
         while (rentals.hasMoreElements()) {

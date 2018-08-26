@@ -8,7 +8,7 @@ public class CustomerTest {
     private Customer customer = new Customer("Mark");
     @Test
     public void should_return_correct_statement_given_customer_has_no_rental() {
-        String statement = customer.statement();
+        String statement = customer.txtStatement();
         assertEquals("Rental Record for Mark\nAmount owed is 0.0\nYou earned 0 frequent renter points", statement);
     }
 
@@ -18,7 +18,7 @@ public class CustomerTest {
         Rental oneDayRental = new Rental(regularMovie, 1);
         customer.addRental(oneDayRental);
 
-        String statement = customer.statement();
+        String statement = customer.txtStatement();
 
         assertEquals("Rental Record for Mark\n"
                 + "\t"
@@ -34,7 +34,7 @@ public class CustomerTest {
         Rental threeDayRental = new Rental(regularMovie, 3);
         customer.addRental(threeDayRental);
 
-        String statement = customer.statement();
+        String statement = customer.txtStatement();
 
         assertEquals("Rental Record for Mark\n" +
                 "\t" + regularMovie.getTitle() + "\t3.5\n" +
@@ -48,7 +48,7 @@ public class CustomerTest {
         Rental oneDayRental = new Rental(newReleaseMovie, 1);
         customer.addRental(oneDayRental);
 
-        String statement = customer.statement();
+        String statement = customer.txtStatement();
 
         assertEquals("Rental Record for Mark\n" +
                 "\t" + newReleaseMovie.getTitle() + "\t3.0\n" +
@@ -62,7 +62,7 @@ public class CustomerTest {
         Rental twoDayRental = new Rental(newReleaseMovie, 2);
         customer.addRental(twoDayRental);
 
-        String statement = customer.statement();
+        String statement = customer.txtStatement();
 
         assertEquals("Rental Record for Mark\n" +
                 "\t" + newReleaseMovie.getTitle() + "\t6.0\n" +
@@ -76,7 +76,7 @@ public class CustomerTest {
         Rental oneDayRental = new Rental(childrenMovie, 1);
         customer.addRental(oneDayRental);
 
-        String statement = customer.statement();
+        String statement = customer.txtStatement();
 
         assertEquals("Rental Record for Mark\n" +
                 "\t" + childrenMovie.getTitle() + "\t1.5\n" +
@@ -90,7 +90,7 @@ public class CustomerTest {
         Rental fourDayRental = new Rental(childrenMovie, 4);
         customer.addRental(fourDayRental);
 
-        String statement = customer.statement();
+        String statement = customer.txtStatement();
 
         assertEquals("Rental Record for Mark\n" +
                 "\t" + childrenMovie.getTitle() + "\t3.0\n" +
